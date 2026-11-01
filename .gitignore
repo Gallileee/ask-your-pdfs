@@ -1,0 +1,7 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+# The vector store is rebuilt with `python ingest.py`
+chroma_db/
+.claude/

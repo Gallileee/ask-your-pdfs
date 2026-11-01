@@ -1,0 +1,14 @@
+# Ingestion + retrieval
+pypdf>=6.0
+cryptography>=44  # needed by pypdf for encrypted PDFs (e.g. the NIST sample)
+sentence-transformers>=5.0
+chromadb>=1.0
+
+# Generation (install all three; the one whose API key is set is used)
+anthropic>=1.0
+openai>=2.0
+google-genai>=2.0
+
+# Config + web UI
+python-dotenv>=1.0
+streamlit>=1.40
