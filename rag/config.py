@@ -22,6 +22,13 @@ CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", 800))  # characters
 CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", 150))  # characters
 
 TOP_K = int(os.getenv("TOP_K", 5))
+# How excerpts are found (compare them with `python evaluate.py --mode ...`):
+#   vector  semantic search with embeddings only
+#   hybrid  semantic + keyword (BM25) search, merged with reciprocal rank fusion
+#   rerank  hybrid candidates re-ordered by a cross-encoder that reads the question
+#           and each passage together (most accurate, ~0.3 s per question on CPU)
+SEARCH_MODE = os.getenv("SEARCH_MODE", "rerank")
+RERANK_MODEL = os.getenv("RERANK_MODEL", "cross-encoder/ms-marco-MiniLM-L-6-v2")
 # Cosine similarity below this for the best hit means "nothing relevant in the corpus",
 # so we answer "I don't know" without calling the LLM.
 MIN_SIMILARITY = float(os.getenv("MIN_SIMILARITY", 0.5))

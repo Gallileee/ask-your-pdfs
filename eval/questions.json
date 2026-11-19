@@ -1,0 +1,40 @@
+{
+  "answerable": [
+    {
+      "question": "What are the four functions of the AI RMF Core?",
+      "expected": [["nist-ai-rmf.pdf", 25]],
+      "must_mention": ["govern", "map", "measure", "manage"]
+    },
+    {
+      "question": "Which characteristics make an AI system trustworthy according to NIST?",
+      "expected": [["nist-ai-rmf.pdf", 17]],
+      "must_mention": ["valid", "safe", "secure", "accountable", "explainable", "privacy", "fair"]
+    },
+    {
+      "question": "What are reflection tokens in Self-RAG?",
+      "expected": [["self-rag.pdf", 1], ["self-rag.pdf", 2]],
+      "must_mention": ["retriev", "critic"]
+    },
+    {
+      "question": "What accuracy does PaLM 540B reach on GSM8K with chain-of-thought prompting?",
+      "expected": [["chain-of-thought.pdf", 2], ["chain-of-thought.pdf", 5]],
+      "must_mention": ["57"]
+    },
+    {
+      "question": "What pooling strategy does SBERT use by default?",
+      "expected": [["sentence-bert.pdf", 3]],
+      "evidence": "The default configuration is MEAN",
+      "must_mention": ["mean"]
+    },
+    {
+      "question": "How long does it take SBERT to find the most similar pair in 10,000 sentences compared to BERT?",
+      "expected": [["sentence-bert.pdf", 1], ["sentence-bert.pdf", 2]],
+      "must_mention": ["65 hours", "5 seconds"]
+    }
+  ],
+  "unanswerable": [
+    "What is the capital of Australia?",
+    "Who won the 2022 FIFA World Cup?",
+    "How many GPUs were used to train GPT-4?"
+  ]
+}

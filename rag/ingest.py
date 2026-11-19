@@ -55,6 +55,10 @@ def split_text(text: str, size: int = config.CHUNK_SIZE, overlap: int = config.C
             if not tail:  # last sentence alone is longer than the overlap: take its last words
                 last = current[-1]
                 tail = [last[last.find(" ", len(last) - overlap) + 1 :]]
+            # Overlap is a nice-to-have, the size limit is not: if the overlap plus a
+            # long piece (e.g. a cut-up table row) would overflow, start without it.
+            if len(" ".join(tail + [piece])) > size:
+                tail = []
             current = tail
         current.append(piece)
     if current:

@@ -2,6 +2,7 @@
 Anthropic, OpenAI, Gemini (or PROVIDER=... to force one)."""
 
 import os
+import sys
 import time
 
 DEFAULT_MODELS = {
@@ -60,6 +61,7 @@ def complete(system: str, user: str, attempts: int = 3) -> str:
         except Exception as e:  # rate limits / 503 "high demand" are common on free tiers
             if attempt == attempts:
                 raise
-            print(f"({provider} error: {e}; retrying)")
+            # stderr, not stdout: the MCP server speaks its protocol over stdout.
+            print(f"({provider} error: {e}; retrying)", file=sys.stderr)
             time.sleep(2 * attempt)
     raise AssertionError("unreachable")

@@ -9,6 +9,10 @@ anthropic>=1.0
 openai>=2.0
 google-genai>=2.0
 
-# Config + web UI
+# Config + web UI + MCP server
 python-dotenv>=1.0
 streamlit>=1.40
+mcp>=2.3
+
+# Tests
+pytest>=8

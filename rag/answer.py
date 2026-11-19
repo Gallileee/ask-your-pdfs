@@ -47,7 +47,8 @@ def build_prompt(question: str, hits: list[Hit]) -> str:
 def ask(question: str, k: int = config.TOP_K) -> Answer:
     hits = search(question, k)
     # Nothing even remotely similar: don't let the LLM guess.
-    if not hits or hits[0].similarity < config.MIN_SIMILARITY:
+    # (Hybrid ranking isn't sorted by similarity, so look at the best one, not the first.)
+    if not hits or max(h.similarity for h in hits) < config.MIN_SIMILARITY:
         return Answer(config.NOT_FOUND, hits, used_llm=False)
 
     text = complete(SYSTEM_PROMPT, build_prompt(question, hits))
